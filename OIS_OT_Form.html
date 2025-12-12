@@ -1,9 +1,11 @@
+@@ -1,1209 +1,1227 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>OIS Overtime Form</title>
+<link rel="shortcut icon" href="https://orientirrigation.com/wp-content/uploads/2020/02/favicon.ico" type="image/x-icon" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
 /* CSS Variables based on your theme */
@@ -13,7 +15,7 @@
     --forest-green: #1D9243;
     --cerulean: #007A8E;
     --white: #FFFFFF;
-    
+
     /* Theme assignments */
     --primary: var(--cerulean);
     --primary-dark: #006276;
@@ -485,45 +487,45 @@ select {
         text-align: left;
         gap: 20px;
     }
-    
+
     .logo-container {
         flex-direction: row;
         gap: 20px;
     }
-    
+
     .company-logo {
         width: 90px;
         height: 90px;
     }
-    
+
     .header-text h1 {
         justify-content: flex-start;
         font-size: 1.3rem;
     }
-    
+
     .header-text p {
         text-align: left;
         padding-left: 0;
     }
-    
+
     .form-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 20px;
     }
-    
+
     .entry-form {
         grid-template-columns: repeat(2, 1fr);
     }
-    
+
     .entry-form .form-group.full-width {
         grid-column: span 2;
     }
-    
+
     .form-footer {
         flex-direction: row;
         flex-wrap: wrap;
     }
-    
+
     .form-footer .btn {
         width: calc(50% - 10px);
         min-width: 200px;
@@ -535,41 +537,41 @@ select {
         max-width: 1200px;
         margin: 0 auto;
     }
-    
+
     .company-logo {
         width: 100px;
         height: 100px;
     }
-    
+
     .header-text h1 {
         font-size: 1.4rem;
     }
-    
+
     main {
         padding: 25px 30px;
         max-width: 1200px;
         margin: 0 auto;
     }
-    
+
     .form-grid {
         grid-template-columns: repeat(3, 1fr);
         gap: 25px;
     }
-    
+
     .entry-form {
         grid-template-columns: repeat(3, 1fr);
     }
-    
+
     .entry-form .form-group.full-width {
         grid-column: span 3;
     }
-    
+
     .form-footer {
         flex-direction: row;
         justify-content: center;
         gap: 20px;
     }
-    
+
     .form-footer .btn {
         width: auto;
         min-width: 200px;
@@ -582,49 +584,49 @@ select {
     header {
         padding: 12px 15px;
     }
-    
+
     .company-logo {
         width: 70px;
         height: 70px;
     }
-    
+
     .header-text h1 {
         font-size: 1.1rem;
     }
-    
+
     .header-text h1 i {
         width: 35px;
         height: 35px;
         font-size: 1.1rem;
     }
-    
+
     .header-text p {
         font-size: 0.9rem;
     }
-    
+
     main {
         padding: 15px 10px;
     }
-    
+
     .card {
         padding: 15px 12px;
     }
-    
+
     .card-title {
         font-size: 1.2rem;
     }
-    
+
     input, select, textarea {
         padding: 10px 12px;
         font-size: 0.9rem;
     }
-    
+
     .btn {
         padding: 10px 16px;
         font-size: 0.9rem;
         min-height: 42px;
     }
-    
+
     .entry-card {
         padding: 15px;
     }
@@ -635,26 +637,26 @@ select {
     header {
         padding: 10px 15px;
     }
-    
+
     .company-logo {
         width: 60px;
         height: 60px;
     }
-    
+
     .header-text h1 {
         font-size: 1rem;
     }
-    
+
     .card {
         padding: 15px;
         margin-bottom: 15px;
     }
-    
+
     .card-title {
         font-size: 1.1rem;
         margin-bottom: 15px;
     }
-    
+
     .form-group {
         margin-bottom: 10px;
     }
@@ -665,7 +667,7 @@ select {
     .btn, .remove-entry, #addRowBtn, #resetBtn {
         display: none !important;
     }
-    
+
     .card {
         box-shadow: none;
         border: 1px solid #ccc;
@@ -721,7 +723,7 @@ select {
     <!-- Overtime Entries Card -->
     <div class="card">
         <h2 class="card-title"><i class="fas fa-list"></i> Overtime Entries</h2>
-        
+
         <div class="entries-container" id="entriesContainer">
             <!-- Entry 1 -->
             <div class="entry-card" data-entry-id="1">
@@ -763,7 +765,7 @@ select {
                 </div>
             </div>
         </div>
-        
+
         <div class="form-footer">
             <button id="addRowBtn" class="btn btn-primary">
                 <i class="fas fa-plus"></i> Add New Entry
@@ -814,20 +816,21 @@ select {
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const today = new Date().toISOString().split('T')[0];
-    
+
     const entriesContainer = document.getElementById('entriesContainer');
-    
+
     // Set initial values
     document.getElementById('empCode').value = '';
     document.getElementById('fullName').value = '';
     document.getElementById('email').value = '';
-    
+
     // Set default date for first entry
     const firstEntry = document.querySelector('.entry-card');
     firstEntry.querySelector('.date-input').value = today;
-    
+
     // Your deployed URL
-    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyhiWu7TysWhRd3evKljixR07_1zgtAh6pFO2PprrFS_Zb908tBmVZ2ebit0Dup7Nemcg/exec"; // Replace with your deployment URL
+    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwQMZxR8Hw8RtMuQlrULAhC4PucgEeZ-p0oC-KN2d884q1OBs1xI1RnClL7kDLPZi88/exec"; 
+    // Replace with your deployment URL
 
     let entryCounter = 1;
 
@@ -876,12 +879,12 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         `;
         entriesContainer.appendChild(newEntry);
-        
+
         // Scroll to new entry on mobile
         if (window.innerWidth <= 768) {
             newEntry.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
-        
+
         showMessage('New overtime entry added', 'success');
     });
 
@@ -889,7 +892,7 @@ document.addEventListener('DOMContentLoaded', function() {
     window.removeEntry = function(button) {
         const entryCard = button.closest('.entry-card');
         const entries = document.querySelectorAll('.entry-card');
-        
+
         if (entries.length > 1) {
             entryCard.remove();
             updateEntryNumbers();
@@ -920,7 +923,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const empCode = document.getElementById('empCode').value.trim();
         const fullName = document.getElementById('fullName').value.trim();
         const email = document.getElementById('email').value.trim();
-        
+
         if (!empCode || !fullName || !email) { 
             showMessage('Please fill in all submitter information.', 'error'); 
             return; 
@@ -966,12 +969,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 hours: entry.querySelector('.hours-input').value,
                 remarks: entry.querySelector('.remarks-input').value.trim()
             };
-            
+
             // Reset all borders first
             entry.querySelectorAll('input, textarea').forEach(input => {
                 input.style.borderColor = '';
             });
-            
+
             // Validate required fields
             const requiredFields = [inputs.empCode, inputs.empName, inputs.projectCode, inputs.date, inputs.hours];
             if (requiredFields.some(field => !field)) {
@@ -982,13 +985,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 });
             }
-            
+
             // Validate formats
             if (inputs.empCode && !/^(E|e)\d{4}$/.test(inputs.empCode)) {
                 isValid = false;
                 entry.querySelector('.emp-code-input').style.borderColor = 'var(--danger)';
             }
-            
+
          //   if (inputs.projectCode && !/^(LS|DM|GC|CN)\d{5}$/.test(inputs.projectCode)) {
         //        isValid = false;
          //       entry.querySelector('.project-code-input').style.borderColor = 'var(--danger)';
@@ -999,7 +1002,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 entry.querySelector('.project-code-input').style.borderColor = 'var(--danger)';
             }
 
-            
+
             // Validate hours
             if (inputs.hours) {
                 const hours = parseFloat(inputs.hours);
@@ -1008,6 +1011,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     entry.querySelector('.hours-input').style.borderColor = 'var(--danger)';
                 }
             }
+
+
 
 // Validate date is not greater than today
 if (inputs.date) {
@@ -1023,8 +1028,18 @@ if (inputs.date) {
     }
 }
 
-            
-            
+
+
+
+
+
+
+
+
+
+
+
+
             entryData.push(inputs);
         });
 
@@ -1039,7 +1054,7 @@ if (inputs.date) {
             entries: entryData,
             submissionType: "OVERTIME" 
         };
-        
+
         console.log('Submitting:', payload);
 
         const submitBtn = document.getElementById('submitBtn');
@@ -1049,19 +1064,19 @@ if (inputs.date) {
 
         try {
             console.log('Sending request via fetch...');
-            
+
             const response = await fetch(WEB_APP_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
             });
-            
+
             const result = await response.json();
             console.log('Server response:', result);
-            
+
             if (result.success) {
                 showMessage(`Success! Your overtime submission has been sent to HR. Submission ID: ${result.submissionId || 'N/A'}`, 'success');
-                
+
                 // Auto-reset after 2 seconds
                 setTimeout(() => {
                     if (confirm('Submission successful! Reset form for new entry?')) {
@@ -1071,38 +1086,38 @@ if (inputs.date) {
             } else {
                 showMessage(`Error: ${result.error || 'Submission failed'}`, 'error');
             }
-            
+
         } catch (error) {
             console.error('Submission error:', error);
-            
+
             // Fallback: Use iframe method
             try {
                 console.log('Trying iframe fallback...');
-                
+
                 // Create hidden iframe
                 const iframe = document.createElement('iframe');
                 iframe.name = 'hidden-iframe';
                 iframe.style.display = 'none';
                 document.body.appendChild(iframe);
-                
+
                 // Create form that submits to iframe
                 const form = document.createElement('form');
                 form.method = 'POST';
                 form.action = WEB_APP_URL;
                 form.target = 'hidden-iframe';
                 form.style.display = 'none';
-                
+
                 const input = document.createElement('input');
                 input.type = 'hidden';
                 input.name = 'data';
                 input.value = JSON.stringify(payload);
                 form.appendChild(input);
-                
+
                 document.body.appendChild(form);
                 form.submit();
-                
+
                 showMessage('Submission sent! Please check your email for confirmation.', 'success');
-                
+
                 // Clean up and reset
                 setTimeout(() => {
                     if (confirm('Reset form for new entry?')) {
@@ -1111,7 +1126,7 @@ if (inputs.date) {
                     document.body.removeChild(form);
                     document.body.removeChild(iframe);
                 }, 1000);
-                
+
             } catch (fallbackError) {
                 console.error('Fallback failed:', fallbackError);
                 showMessage('Submission failed. Please try again.', 'error');
@@ -1129,7 +1144,7 @@ if (inputs.date) {
             document.getElementById('empCode').value = '';
             document.getElementById('fullName').value = '';
             document.getElementById('email').value = '';
-            
+
             // Reset all entries to just one
             entriesContainer.innerHTML = `
                 <div class="entry-card" data-entry-id="1">
@@ -1170,16 +1185,16 @@ if (inputs.date) {
                         </div>
                     </div>
                 </div>`;
-            
+
             entryCounter = 1;
-            
+
             document.getElementById('successBanner').style.display = 'none';
             document.getElementById('errorBanner').style.display = 'none';
-            
+
             document.querySelectorAll('input, textarea').forEach(input => {
                 input.style.borderColor = '';
             });
-            
+
             showMessage('Form reset successfully', 'success');
         }
     });
@@ -1195,7 +1210,7 @@ if (inputs.date) {
             document.getElementById('errorBanner').style.display = 'block';
             document.getElementById('successBanner').style.display = 'none';
         }
-        
+
         // Auto-hide messages after 5 seconds
         setTimeout(() => {
             document.getElementById('successBanner').style.display = 'none';
@@ -1205,7 +1220,7 @@ if (inputs.date) {
 
     // Touch-friendly improvements
     document.addEventListener('touchstart', function() {}, {passive: true});
-    
+
     // Prevent zoom on input focus for mobile
     document.addEventListener('focus', function(e) {
         if (window.innerWidth <= 768 && 
@@ -1219,9 +1234,3 @@ if (inputs.date) {
 </script>
 </body>
 </html>
-
-
-
-
-
-
