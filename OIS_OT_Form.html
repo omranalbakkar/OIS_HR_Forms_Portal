@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>OIS Overtime Form</title>
-<link rel="shortcut icon" href="https://orientirrigation.com/wp-content/uploads/2020/02/favicon.ico" type="image/x-icon" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
 /* CSS Variables based on your theme */
@@ -828,8 +827,7 @@ document.addEventListener('DOMContentLoaded', function() {
     firstEntry.querySelector('.date-input').value = today;
     
     // Your deployed URL
-    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwQMZxR8Hw8RtMuQlrULAhC4PucgEeZ-p0oC-KN2d884q1OBs1xI1RnClL7kDLPZi88/exec"; 
-    // Replace with your deployment URL
+    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyhiWu7TysWhRd3evKljixR07_1zgtAh6pFO2PprrFS_Zb908tBmVZ2ebit0Dup7Nemcg/exec"; // Replace with your deployment URL
 
     let entryCounter = 1;
 
@@ -1010,6 +1008,22 @@ document.addEventListener('DOMContentLoaded', function() {
                     entry.querySelector('.hours-input').style.borderColor = 'var(--danger)';
                 }
             }
+
+// Validate date is not greater than today
+if (inputs.date) {
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+    // Input is yyyy-mm-dd → convert to a Date object
+    const inputDate = new Date(inputs.date + "T00:00:00");
+
+    if (inputDate > today) {
+        isValid = false;
+        entry.querySelector('.date-input').style.borderColor = 'var(--danger)';
+    }
+}
+
+            
             
             entryData.push(inputs);
         });
@@ -1205,5 +1219,9 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </body>
 </html>
+
+
+
+
 
 
